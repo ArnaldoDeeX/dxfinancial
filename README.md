@@ -25,13 +25,11 @@ Email: dxf@default.com<br>
 Password: 123<br>
 
 <h2>🔧 Ficha Técnica</h2>
-<pre>
 <ul>
 <li>Framework: Laravel 8</li>
 <li>PHP Version: 7.*</li>
 <li>Database: Mysql</li>
 </ul>
-</pre>
 
 <h2>📖 Licença</h2>
 Este projeto está licenciado sob a licença MPL 2.0.
