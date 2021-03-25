@@ -158,7 +158,7 @@
         <footer class="footer">
             <div class="container-fluid">
                 <div class="copyright ml-auto">
-                    DX Financial Powered by <b><a target="_blank" href="#">DX Dev</a></b>
+                    DX Financial Developed by <b><a target="_blank" href="https://github.com/ArnaldoDeeX">Arnaldo DeeX</a></b>
                 </div>
             </div>
         </footer>
