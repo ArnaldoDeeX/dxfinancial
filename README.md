@@ -20,7 +20,7 @@ cp .env.example .env
 <pre>
 php artisan migrate
 </pre>
-<b>Operador padrão:</b>
+<b>Operador padrão:</b><br>
 Email: dxf@default.com<br>
 Password: 123<br>
 
