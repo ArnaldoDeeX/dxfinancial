@@ -11,8 +11,26 @@ composer install
 
 <h2>⚙️ Configuração do ENV</h2>
 Copie o arquivo .env.example e renomeie como .env
+Preencha as credenciais
 <pre>
 cp .env.example .env
+</pre>
+
+<h2>🚀 Criando banco de dados</h2>
+<pre>
+php artisan migrate
+</pre>
+Operador padrão:
+Email: dxf@default.com
+Password: 123
+
+<h2>🔧 Ficha Técnica</h2>
+<pre>
+<ul>
+<li>Framework: Laravel 8</li>
+<li>PHP Version: 7.*</li>
+<li>Database: Mysql</li>
+</ul>
 </pre>
 
 <h2>📖 Licença</h2>
