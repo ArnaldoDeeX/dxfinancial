@@ -86,11 +86,6 @@ class App extends Controller
             }
 
             if ($request->input('id') && $request->input('update') && !$request->input('delete')) {
-                $search = (new Customers())->where('email', $request->input('email'))->first();
-                if($search){
-                    return redirect('app/customers')->withMessage('userExists');
-                }
-
                 (new Customers())->where('id', $request->input('id'))->update([
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
@@ -102,10 +97,10 @@ class App extends Controller
 
             if ($request->input('name') && !$request->input('update') && !$request->input('delete')) {
                 $search = (new Customers())->where('email', $request->input('email'))->first();
-                if($search){
+                if ($search) {
                     return redirect('app/customers')->withMessage('userExists');
                 }
-                
+
                 (new Customers())->insert([
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
@@ -119,6 +114,7 @@ class App extends Controller
                 (new Customers())->where('id', $request->input('id'))->delete();
             }
         }
+
 
         return view('app/customers', [
             "customers" => (new Customers())->orderBy('id', 'DESC')->paginate(15),
