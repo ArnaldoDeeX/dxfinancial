@@ -6,7 +6,7 @@ use App\Http\Controllers\App;
 
 Route::prefix('/')->group(function () {
     Route::any('login', [App::class, 'login'])->name('login');
-    Route::any('logout', [App::class, 'logout']);
+    Route::any('logout', [App::class, 'logout'])->name('logout');
     Route::any('/', function () {
         return redirect('login');
     });
