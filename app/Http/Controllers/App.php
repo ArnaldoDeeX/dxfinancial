@@ -86,8 +86,9 @@ class App extends Controller
             }
 
             if ($request->input('id') && $request->input('update') && !$request->input('delete')) {
+
                 (new Customers())->where('id', $request->input('id'))->update([
-                    'name' => $request->input('name'),
+                    'name' => trim($request->input('name'), "'"),
                     'email' => $request->input('email'),
                     'plan' => $request->input('plan'),
                     'expireat' => $request->input('expireat'),
