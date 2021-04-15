@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 class App extends Controller
 {
 
+    public function test()
+    {
+      
+    }
+
     public function customersInvoices(Request $request)
     {
         // return view('app/checkout', [
@@ -26,14 +31,15 @@ class App extends Controller
                     "value" => $request->input('value'),
                     "expireat" => $request->input('expireat'),
                     "status" => 1,
-                    "url" => (new Gateway())->generate($request->input('charge'), $request->input('value'), $request->input('email'))->init_point
+                    "url" => (new Gateway())->generate($request->input('charge'), $request->input('value'), $request->input('email'))->init_point,
                 ]);
             }
         }
 
         return view('app/invoices', [
-            'invoices' => (new Invoices())->all()
+            'invoices' => (new Invoices())->all(),
         ]);
+
     }
 
     public function ipn(Request $request)
@@ -52,7 +58,8 @@ class App extends Controller
         if ($request->email) {
             $check = (new Operators())->where('email', $request->email)->where('password', $request->password)->first();
             if ($check) {
-                $request->session()->put('auth', (object)$check);
+                $request->session()->put('auth', (object) $check);
+
                 return redirect('app');
             } else {
                 return redirect('login')->withMessage('Usuário ou senha inválidos.');
@@ -72,7 +79,7 @@ class App extends Controller
     {
         return view('app/home', [
             "customers" => (new Customers())->where('status', 1)->count(),
-            "plans" => (new Plans())->count()
+            "plans" => (new Plans())->count(),
         ]);
     }
 
@@ -92,7 +99,7 @@ class App extends Controller
                     'email' => $request->input('email'),
                     'plan' => $request->input('plan'),
                     'expireat' => $request->input('expireat'),
-                    'status' => $request->input('status')
+                    'status' => $request->input('status'),
                 ]);
             }
 
@@ -107,7 +114,7 @@ class App extends Controller
                     'email' => $request->input('email'),
                     'plan' => $request->input('plan'),
                     'expireat' => $request->input('expireat'),
-                    'status' => 1
+                    'status' => 1,
                 ]);
             }
 
@@ -116,10 +123,9 @@ class App extends Controller
             }
         }
 
-
         return view('app/customers', [
             "customers" => (new Customers())->orderBy('id', 'DESC')->paginate(15),
-            "plans" => (new Plans())->all()
+            "plans" => (new Plans())->all(),
         ]);
     }
 
@@ -138,20 +144,20 @@ class App extends Controller
             if ($request->input('plan') && !$request->input('update')) {
                 (new Plans())->insert([
                     'plan' => $request->input('plan'),
-                    'price' => $request->input('price')
+                    'price' => $request->input('price'),
                 ]);
             }
 
             if ($request->input('update')) {
                 (new Plans())->where('id', $request->id)->update([
                     'plan' => $request->input('plan'),
-                    'price' => $request->input('price')
+                    'price' => $request->input('price'),
                 ]);
             }
         }
 
         return view('app/plans', [
-            'plans' => (new Plans())->paginate(15)
+            'plans' => (new Plans())->paginate(15),
         ]);
     }
 
@@ -159,4 +165,5 @@ class App extends Controller
     {
         return view('app/invoices');
     }
+
 }

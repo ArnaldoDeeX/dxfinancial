@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\App;
-
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->group(function () {
     Route::any('login', [App::class, 'login'])->name('login');
@@ -13,9 +12,9 @@ Route::prefix('/')->group(function () {
     Route::any('/service/mpipn', [App::class, 'ipn']);
 });
 
-Route::prefix('app')->group(function () {
-    Route::any('/', [App::class, 'dashboard'])->middleware('auth');
-    Route::any('/customers', [App::class, 'customers'])->middleware('auth');
-    Route::any('/plans', [App::class, 'plans'])->middleware('auth');
-    Route::any('/invoices', [App::class, 'customersInvoices'])->middleware('auth');
+Route::middleware('auth')->prefix('app')->group(function () {
+    Route::any('/', [App::class, 'dashboard']);
+    Route::any('/customers', [App::class, 'customers']);
+    Route::any('/plans', [App::class, 'plans']);
+    Route::any('/invoices', [App::class, 'customersInvoices']);
 });
